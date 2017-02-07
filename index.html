@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title></title>
+    <link rel="stylesheet" href="css/main.css" />
+	<script type="text/javascript" src="js/soundmanager2.js"></script>
+	<script>var mySound;
+		var isPlaying=false;
+		soundManager.url = 'swf/soundmanager2.swf'; // directory where SM2 .SWFs live
+		
+		function audioLaunch(){
+			//alert("here")
+			isPlaying=true;
+			
+			soundManager.onready(function(){
+				console.log("AUDIO");
+				mySound= soundManager.createSound({
+					id: 'aSound',
+					url: 'audio/bg_audio.mp3',
+					 
+					onload: function() {
+					//isPlaying=true;
+					//alert("onloadhere")
+					},
+
+					onfinish:function(){
+						parent.clickNext();
+						//$('#replayImg').css('display','block')
+						//$('#replayBG').css('display','block')
+					},
+
+					whileplaying: function() {
+						//alert("hr play")
+						if(isPlaying){
+							isPlaying=false;
+							$('#LoadImg').css('display','none')
+							//startAnim();
+						}					  
+					}
+				});
+				mySound.load(); 
+				setTimeout(mySound.play,500);		  
+			});			
+		}
+		audioLaunch();
+       </script>
+	
+</head>
+
+<body>
+	<div id="container">
+		 <div id="animationContainer" style="width: 940px; height: 450px">
+    	 </div>
+         <div id="textContents" style="width: 940px; height: 450px">
+         	<div id="animText_1" class="animTextClass">
+            	<div id="text_1"></div>
+                <div id="text_2"></div>
+                <div id="text_3"></div>
+            </div>
+            <div id="animText_2" class="animTextClass">
+            	<div id="text_4"><h3></h3></div>
+            </div>
+    	 </div>
+         
+	</div>
+    <div id="pp"></div>
+    <script type="text/javascript" src="js/libs/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery-ui.js"></script>
+    <script type="text/javascript" src="js/libs/TweenMax.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery.xml2json.js"></script>
+    <script type="text/javascript" src="js/runtime.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/animations.js"></script>
+	<script>
+			var abc;
+		var stage_1,stage_2,stage_3,stage_4;
+		
+		function animationIsComplete_1(){
+		  //console.log("animationIsComplete_1");
+			assignAnimation_4_1();
+	  	}
+		
+		function animationIsComplete_2(){
+		  //console.log("animationIsComplete_2");
+			assignAnimation_5();
+	  }
+	  
+	  function animationIsComplete_3(){
+		  //console.log("animationIsComplete_3");
+			assignAnimation_6();
+	  }
+	  
+	  function showText1(){
+		$("#text_1").css("display",'block');
+		TweenMax.from("#text_1", 1, {opacity:0, ease:Power2.easeInOut});
+	}
+	
+	function showText2(){
+		$("#text_2").css("display",'block');
+		TweenMax.from("#text_2", 1, {opacity:0, ease:Power2.easeInOut});
+	}
+	
+	function showText3(){
+		$("#text_3").css("display",'block');
+		TweenMax.from("#text_3", 1, {opacity:0, ease:Power2.easeInOut});
+	}
+	
+	function showText4(){
+		$("#text_4").css("display",'block');
+		TweenMax.from("#text_4", 1, {opacity:0, ease:Power2.easeInOut});
+	}
+	
+	function hideAllText1(){
+		TweenMax.to(".animTextClass:eq(0)", 1, {opacity:0, ease:Power2.easeInOut});
+		$(".animTextClass:eq(0)").css('display','none');
+	}
+	
+	function hideAllText2(){
+		TweenMax.to(".animTextClass:eq(1)", 1, {opacity:0, ease:Power2.easeInOut});
+		$(".animTextClass:eq(1)").css('display','none');
+	}
+		$( "#pp" ).click(function() {
+			stage_2.stop();
+		});
+
+	</script>
+</body>
+
+</html>
